@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dixl1q8qstee0"]
+
+[ext_resource type="Texture2D" uid="uid://cfe8lf7hlmn87" path="res://images/Fischl_Character_Card.webp" id="1_l0dyw"]
+[ext_resource type="Script" path="res://src/CharacterCard.cs" id="2_8ek3d"]
+
+[node name="CharacterCard" type="TextureButton"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 40.0
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(210, 0)
+texture_normal = ExtResource("1_l0dyw")
+texture_pressed = ExtResource("1_l0dyw")
+script = ExtResource("2_8ek3d")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr63qym01xk6c"]
+
+[ext_resource type="Texture2D" uid="uid://sausd4djkb6f" path="res://images/Background.jpg" id="1_ntt6g"]
+[ext_resource type="Script" path="res://src/MainControl.cs" id="1_oyi4b"]
+[ext_resource type="PackedScene" uid="uid://dixl1q8qstee0" path="res://prefabs/character_card.tscn" id="3_wvt0f"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oyi4b")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+offset_right = 1599.0
+offset_bottom = 999.0
+texture = ExtResource("1_ntt6g")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="CharacterCard" parent="Control" instance=ExtResource("3_wvt0f")]
