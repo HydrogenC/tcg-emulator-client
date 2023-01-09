@@ -41,7 +41,10 @@ public static class WebUtils
 
     public static Task ConnectAsync(string url)
     {
-        Socket = new WebsocketClient(new Uri(url));
+        Socket = new WebsocketClient(new Uri(url))
+        {
+            ErrorReconnectTimeout = TimeSpan.FromSeconds(20)
+        };
 
         Socket.MessageReceived.Subscribe(msg =>
         {
