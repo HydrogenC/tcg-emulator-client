@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using static WebUtils;
+using static GlobalData;
 
 public partial class SpinningLoad : TextureRect
 {

@@ -7,7 +7,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Websocket.Client;
 
-public static class WebUtils
+public static class GlobalData
 {
     public static WebsocketClient Socket { get; set; }
 
