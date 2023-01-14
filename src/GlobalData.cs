@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Websocket.Client;
@@ -11,7 +12,7 @@ public static class GlobalData
 {
     public static WebsocketClient Socket { get; set; }
 
-    public static ConcurrentQueue<object> MessageQueue { get; set; } = new();
+    public static ConcurrentQueue<MessageBase> MessageQueue { get; set; } = new();
 
     public static Character[] PlayerCharacters { get; set; }
 
@@ -21,22 +22,31 @@ public static class GlobalData
 
     public static int OpponentActiveCharacter { get; set; }
 
-    private static void SetupCharacterList(JsonNode node)
+    public static void SetupCharacterList(SetupClientMessage msg)
     {
-        var playerCharacters = (JsonArray)node["player_characters"];
-        PlayerCharacters = playerCharacters.Select(elem =>
+        PlayerCharacters = msg.PlayerCharacters.Select(elem =>
         {
-            return new Character((string)elem);
+            return new Character(elem);
         }).ToArray();
 
-        var opponentCharacters = (JsonArray)node["opponent_characters"];
-        OpponentCharacters = opponentCharacters.Select(elem =>
+        OpponentCharacters = msg.OpponentCharacters.Select(elem =>
         {
-            return new Character((string)elem);
+            return new Character(elem);
         }).ToArray();
 
         PlayerActiveCharacter = 0;
         OpponentActiveCharacter = 0;
+    }
+
+    public static Type GetDeserializeType(string type)
+    {
+        switch (type)
+        {
+            case "SetupClient":
+                return typeof(SetupClientMessage);
+            default:
+                return typeof(MessageBase);
+        }
     }
 
     public static Task ConnectAsync(string url)
@@ -55,25 +65,20 @@ public static class GlobalData
 
             GD.Print($"Received websocket message: {msg.Text}");
             var root = JsonNode.Parse(msg.Text);
-            object translatedMessage;
-            switch ((string)root["type"])
-            {
-                case "CharacterList":
-                    SetupCharacterList(root["data"]);
-                    translatedMessage = new SetupMessage();
-                    break;
-                default:
-                    translatedMessage = new object();
-                    break;
-            }
+            MessageBase translatedMessage = JsonSerializer.Deserialize(
+                root["data"].ToString(),
+                GetDeserializeType((string)root["type"]),
+                SourceGenerationContext.Default
+                ) as MessageBase;
 
+            // Task.Run(() => Socket.Send("Received"));
             MessageQueue.Enqueue(translatedMessage);
-            Task.Run(() => Socket.Send("Received"));
         });
 
         return Socket.Start().ContinueWith(task =>
         {
-            Socket.Send("Connected");
+            var jsonString = "{\"type\": \"JoinRoom\", \"room\": 100}";
+            Socket.Send(jsonString);
         });
     }
 }

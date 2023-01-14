@@ -18,11 +18,12 @@ public partial class SpinningLoad : TextureRect
     {
         Rotation = (Rotation + (float)delta * Mathf.Pi) % TWICEPI;
 
-        object obj;
+        MessageBase obj;
         if (Socket.IsRunning && MessageQueue.TryDequeue(out obj))
         {
-            if (obj is SetupMessage)
+            if (obj is SetupClientMessage setupGame)
             {
+                SetupCharacterList(setupGame);
                 GetTree().ChangeSceneToFile("res://MainScene.tscn");
             }
         }

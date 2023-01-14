@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_oyi4b")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,13 +22,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-offset_right = 1599.0
-offset_bottom = 999.0
+layout_mode = 2
 texture = ExtResource("1_ntt6g")
 stretch_mode = 5
 
 [node name="PlayerCharacterList" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -39,7 +39,7 @@ script = ExtResource("3_rdtl1")
 IsPlayer = true
 
 [node name="OpponentCharacterList" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

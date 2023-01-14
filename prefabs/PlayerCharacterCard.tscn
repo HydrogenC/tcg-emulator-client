@@ -3,13 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cfe8lf7hlmn87" path="res://images/Fischl_Character_Card.webp" id="1_q0r53"]
 [ext_resource type="Script" path="res://src/CharacterCard.cs" id="2_qk8fy"]
 [ext_resource type="Texture2D" uid="uid://h5t4g464yo1q" path="res://images/Hp.png" id="3_punly"]
-
-[sub_resource type="SystemFont" id="SystemFont_b7a4q"]
-font_names = PackedStringArray("Arial")
-subpixel_positioning = 0
+[ext_resource type="FontFile" uid="uid://lmhsx60vtx3i" path="res://HYWenHei-85W.otf" id="4_sp1kh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wemki"]
-font = SubResource("SystemFont_b7a4q")
+font = ExtResource("4_sp1kh")
 font_size = 64
 
 [node name="CharacterCard" type="TextureButton"]
