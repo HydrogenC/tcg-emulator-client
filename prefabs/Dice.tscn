@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://baiv3yfwbxv57"]
+
+[ext_resource type="Texture2D" uid="uid://cq1ttre7hsphj" path="res://images/dices/any-icon.png" id="1_rlsxy"]
+
+[node name="Dice" type="TextureButton"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_rlsxy")

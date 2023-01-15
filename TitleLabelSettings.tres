@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d3om4npysdks5"]
+
+[ext_resource type="FontFile" uid="uid://lmhsx60vtx3i" path="res://HYWenHei-85W.otf" id="1_r5oed"]
+
+[resource]
+font = ExtResource("1_r5oed")
+font_size = 40

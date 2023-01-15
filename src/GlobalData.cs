@@ -10,6 +10,24 @@ using Websocket.Client;
 
 public static class GlobalData
 {
+    public static readonly string[] ElementNames = new string[]
+    {
+        "any",
+        "electro",
+        "hydro",
+        "pyro",
+        "cryo",
+        "anemo",
+        "geo",
+        "dendro",
+        "void"
+    };
+
+    public static int[] Dices
+    {
+        get; set;
+    } = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
     public static WebsocketClient Socket { get; set; }
 
     public static ConcurrentQueue<MessageBase> MessageQueue { get; set; } = new();

@@ -45,7 +45,15 @@ public partial class CharacterList : Control
                 cardInstance.OffsetTop = y_offset;
             }
 
-            cardInstance.OffsetLeft = x_offset;
+            if (x_offset > 0)
+            {
+                cardInstance.OffsetLeft = x_offset;
+            }
+            else
+            {
+                cardInstance.OffsetRight = x_offset;
+            }
+
             AddChild(cardInstance);
             cards[i] = cardInstance;
 
